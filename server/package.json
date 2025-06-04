@@ -1,0 +1,24 @@
+{
+  "name": "github-analyzer-agent-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend server for GitHub Analyzer with LangGraph agent",
+  "main": "agent-server.js",
+  "scripts": {
+    "start": "node agent-server.js",
+    "dev": "nodemon agent-server.js",
+    "check-env": "node check-env.js"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.0.25",
+    "@langchain/core": "^0.1.27",
+    "@langchain/langgraph": "^0.0.14",
+    "@langchain/openai": "^0.0.14",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
