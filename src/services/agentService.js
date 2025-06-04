@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Since we can't use API keys directly in the frontend,
 // we'll create a service that calls your backend API
-const BACKEND_API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
+const BACKEND_API_URL = process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000');
 
 export const searchRepositoriesWithNaturalLanguage = async (query) => {
   try {

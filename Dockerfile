@@ -1,6 +1,8 @@
 FROM node:18-slim
 
-# Set working directory
+# Install curl for health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # Copy package.json and package-lock.json
@@ -11,7 +13,6 @@ RUN npm install
 
 # Copy server files and dependencies
 COPY server/package*.json ./server/
-COPY server/.env ./server/
 COPY server/agent-server.js ./server/
 COPY server/check-env.js ./server/
 RUN cd server && npm install
@@ -20,11 +21,15 @@ RUN cd server && npm install
 COPY src ./src
 COPY public ./public
 
-# Build frontend
+# Build frontend for production
 RUN npm run build
 
-# Expose ports
-EXPOSE 3000 3001
+# Expose the port
+EXPOSE $PORT
 
-# Start both frontend and backend
-CMD ["npm", "run", "dev"]
+# Add health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:${PORT:-3000}/health || exit 1
+
+# Start single server (backend serves both API and frontend)
+CMD ["node", "server/agent-server.js"]
