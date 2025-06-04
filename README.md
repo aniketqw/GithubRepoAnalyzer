@@ -362,6 +362,37 @@ curl http://localhost:3001/health
 
 ## 🌐 Deployment
 
+### Docker Hub Deployment
+
+#### Build and Push to Docker Hub
+```bash
+# Build the Docker image with correct platform for deployment (Render compatibility)
+docker build --platform linux/amd64 -t github-repo-analyzer .
+
+# Tag the image for Docker Hub (replace 'username' with your Docker Hub username here for example username is aniket024)
+docker tag github-repo-analyzer:latest aniket024/github-repo-analyzer1:latest
+docker tag github-repo-analyzer:latest aniket024/github-repo-analyzer1:v1.7
+
+# Login to Docker Hub (if not already logged in)
+docker login
+
+# Push to Docker Hub
+docker push aniket024/github-repo-analyzer1:latest
+docker push aniket024/github-repo-analyzer1:v1.7
+```
+
+#### Pull and Run from Docker Hub
+```bash
+# Pull the latest image from Docker Hub
+docker pull aniket024/github-repo-analyzer1:latest
+
+# Run the container
+docker run -d -p 3000:3000 -p 3001:3001 \
+  --name github-analyzer \
+  --env-file server/.env \
+  aniket024/github-repo-analyzer1:latest
+```
+
 ### Container Registry
 ```bash
 # Tag for registry

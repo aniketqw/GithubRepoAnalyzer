@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
-import { Box, Container, CircularProgress, Typography } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from 'react-router-dom';
+import { Box, Container, CircularProgress, Typography, IconButton, Tooltip } from '@mui/material';
+import { Home } from '@mui/icons-material';
 import CssBaseline from '@mui/material/CssBaseline';
 import MainAnalyzer from './components/MainAnalyzer';
 import RepoCard from './components/RepoCard';
@@ -14,6 +15,7 @@ import ThemeToggle from './components/ThemeToggle';
 import ExportButton from './components/ExportButton';
 import { ThemeProviderWrapper } from './contexts/ThemeContext';
 import { getRepoData } from './services/githubService';
+import { useTheme } from '@mui/material/styles';
 
 function App() {
   return (
@@ -26,17 +28,6 @@ function App() {
           minHeight: '100vh',
           bgcolor: 'background.default'
         }}>
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              justifyContent: 'flex-end', 
-              p: 2, 
-              flexShrink: 0,
-              bgcolor: 'background.paper'
-            }}
-          >
-            <ThemeToggle />
-          </Box>
           <Box 
             sx={{ 
               flex: 1, 
@@ -63,6 +54,9 @@ function App() {
 // RepositoryDetails component to handle data fetching and display
 function RepositoryDetails() {
   const { owner, repo } = useParams();
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   const [repoData, setRepoData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -112,6 +106,31 @@ function RepositoryDetails() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
+      {/* Home Button and Theme Toggle */}
+      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Tooltip title="Back to Home">
+          <IconButton
+            onClick={() => navigate('/')}
+            sx={{
+              backgroundColor: isDarkMode ? 'white' : 'primary.main',
+              color: isDarkMode ? 'black' : 'white',
+              '&:hover': {
+                backgroundColor: isDarkMode ? '#f5f5f5' : 'primary.dark',
+              },
+              borderRadius: 2,
+              px: 2,
+              py: 1
+            }}
+          >
+            <Home sx={{ mr: 1 }} />
+            <Typography variant="button" sx={{ color: 'inherit' }}>
+              Home
+            </Typography>
+          </IconButton>
+        </Tooltip>
+        <ThemeToggle />
+      </Box>
+
       <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <Box sx={{ flex: 1, mr: 2 }}>
           <RepoCard repoData={repoData} />

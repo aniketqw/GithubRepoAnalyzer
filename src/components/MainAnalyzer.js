@@ -45,6 +45,7 @@ import { addToSearchHistory } from '../utils/storage';
 import { useTheme } from '@mui/material/styles';
 import SearchHistory from './SearchHistory';
 import BookmarksList from './BookmarksList';
+import ThemeToggle from './ThemeToggle';
 
 function MainAnalyzer() {
   const [inputValue, setInputValue] = useState('');
@@ -180,6 +181,11 @@ function MainAnalyzer() {
       borderRadius: 2,
       boxShadow: isDarkMode ? 2 : 4
     }}>
+      {/* Theme Toggle in top-right */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+        <ThemeToggle />
+      </Box>
+      
       <Box sx={{ mb: 4 }}>
         <Typography 
           variant="h4" 

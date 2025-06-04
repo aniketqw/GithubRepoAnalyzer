@@ -65,9 +65,15 @@ function RepoCard({ repoData }) {
               variant="h5" 
               component="h2"
               sx={{ 
-                color: 'text.primary',
-                fontWeight: 'bold'
+                color: 'primary.main',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'underline'
+                }
               }}
+              onClick={() => window.open(repoData.html_url, '_blank')}
             >
               {repoData.name}
             </Typography>
