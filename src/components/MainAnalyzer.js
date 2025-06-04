@@ -46,6 +46,7 @@ import { useTheme } from '@mui/material/styles';
 import SearchHistory from './SearchHistory';
 import BookmarksList from './BookmarksList';
 import ThemeToggle from './ThemeToggle';
+import ApiKeyStatus from './ApiKeyStatus';
 
 function MainAnalyzer() {
   const [inputValue, setInputValue] = useState('');
@@ -181,8 +182,9 @@ function MainAnalyzer() {
       borderRadius: 2,
       boxShadow: isDarkMode ? 2 : 4
     }}>
-      {/* Theme Toggle in top-right */}
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+      {/* Theme Toggle and API Key Status in top-right */}
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <ApiKeyStatus />
         <ThemeToggle />
       </Box>
       

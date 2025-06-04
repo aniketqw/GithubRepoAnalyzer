@@ -34,6 +34,13 @@ A comprehensive React application for analyzing GitHub repositories with AI-powe
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Error Handling**: Graceful error recovery with helpful messages
 
+### 🔑 **GitHub API Management**
+- **Public API Mode**: 60 requests per hour (no authentication required)
+- **Private API Mode**: 5,000 requests per hour (requires GitHub personal access token)
+- **API Key Management**: Easy-to-use interface for adding/removing API keys
+- **Rate Limit Monitoring**: Real-time tracking of API usage and remaining requests
+- **Status Indicator**: Visual display of current API mode and limits
+
 ## 🏗️ Architecture
 
 ```
@@ -371,14 +378,14 @@ docker build --platform linux/amd64 -t github-repo-analyzer .
 
 # Tag the image for Docker Hub (replace 'username' with your Docker Hub username here for example username is aniket024)
 docker tag github-repo-analyzer:latest aniket024/github-repo-analyzer1:latest
-docker tag github-repo-analyzer:latest aniket024/github-repo-analyzer1:v1.7
+docker tag github-repo-analyzer:latest aniket024/github-repo-analyzer1:v1.9
 
 # Login to Docker Hub (if not already logged in)
 docker login
 
 # Push to Docker Hub
 docker push aniket024/github-repo-analyzer1:latest
-docker push aniket024/github-repo-analyzer1:v1.7
+docker push aniket024/github-repo-analyzer1:v1.9
 ```
 
 #### Pull and Run from Docker Hub
