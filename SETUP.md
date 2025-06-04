@@ -25,7 +25,7 @@ Great for development and when you want to modify the code.
 #### 1. Clone the Repository
 ```bash
 git clone <repository-url>
-cd WindSurfProject
+cd GithubRepoAnalyzer
 ```
 
 #### 2. Configure API Keys
@@ -114,7 +114,7 @@ docker-compose up -d
 #### 1. Clone and Install Dependencies
 ```bash
 git clone <repository-url>
-cd WindSurfProject
+cd GithubRepoAnalyzer
 
 # Install all dependencies (frontend + backend)
 npm run install-all
