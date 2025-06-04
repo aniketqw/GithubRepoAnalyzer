@@ -61,7 +61,7 @@ A comprehensive React application for analyzing GitHub repositories with AI-powe
 1. **Clone the Repository**
 ```bash
 git clone <repository-url>
-cd WindSurfProject
+cd GithubRepoAnalyzer
 ```
 
 2. **Configure Environment Variables**
@@ -209,7 +209,7 @@ docker run -p 3000:3000 -p 3001:3001 github-analyzer # Run container
 ### Project Structure
 
 ```
-WindSurfProject/
+GithubRepoAnalyzer/
 ├── src/
 │   ├── components/          # React components
 │   │   ├── MainAnalyzer.js     # Main search interface
